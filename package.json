@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.7.2",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -37,7 +38,6 @@
     ]
   },
   "devDependencies": {
-    "@reduxjs/toolkit": "^1.7.2",
     "autoprefixer": "^10.4.2",
     "eslint": "^8.8.0",
     "eslint-config-airbnb": "^19.0.4",
