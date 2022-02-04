@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +14,23 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.skeleton {
+  background-color: #eee;
+  animation-name: pulse-background;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse-background {
+  0% {
+    background-color: #eee;
+  }
+  50% {
+    background-color: #e5e5e5;
+  }
+  100% {
+    background-color: #f6f6f6;
+  }
 }
