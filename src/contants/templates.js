@@ -1,0 +1,3 @@
+const TEMPLATESPERPAGE = 15;
+
+export default TEMPLATESPERPAGE;

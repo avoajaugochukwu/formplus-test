@@ -1,5 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { API_URL } from "../../contants/api";
+/* eslint-disable no-param-reassign */
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { createSlice } from '@reduxjs/toolkit';
+import API_URL from '../../contants/api';
 
 export const initialState = {
   loading: false,
@@ -9,7 +11,7 @@ export const initialState = {
 
 // A slice for templates with our three reducers
 const templatesSlice = createSlice({
-  name: "templates",
+  name: 'templates',
   initialState,
   reducers: {
     getTemplates: (state) => {
@@ -28,8 +30,7 @@ const templatesSlice = createSlice({
 });
 
 // Three actions generated from the slice
-export const { getTemplates, getTemplatesSuccess, getTemplatesFailure } =
-  templatesSlice.actions;
+export const { getTemplates, getTemplatesSuccess, getTemplatesFailure } = templatesSlice.actions;
 
 // A selector
 export const templatesSelector = (state) => state.templates;
