@@ -19,7 +19,7 @@ code {
 .skeleton {
   background-color: #eee;
   animation-name: pulse-background;
-  animation-duration: 0.5s;
+  animation-duration: 1s;
   animation-iteration-count: infinite;
 }
 
@@ -33,4 +33,8 @@ code {
   100% {
     background-color: #f6f6f6;
   }
+}
+
+.alert-color {
+  background-color: #fef4ea;
 }

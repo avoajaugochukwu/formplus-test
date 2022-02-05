@@ -14,30 +14,34 @@ const Pagination = ({
     if (direction === 'next' && currentPage < totalCount) {
       setCurrentPage(currentPage + 1);
     }
-
-    console.log(currentPage);
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between pt-10">
       <button
         type="button"
-        onClick={() => {
+        className={currentPage !== 1 ? 'cursor-pointer' : 'cursor-not-allowed text-gray-400'}
+        onClick={currentPage !== 1 ? () => {
           handleClick('previous');
-        }}
+        } : undefined}
       >
         Previous
       </button>
       <p>
-        I am in the middle
-        {totalCount}
+        <span className="border rounded border-gray-900 py-1 px-2">
+          {currentPage}
+        </span>
+        {' '}
+        of
+        {' '}
         {Math.floor(totalCount / displayPerPage)}
       </p>
       <button
         type="button"
-        onClick={() => {
+        className={currentPage !== totalCount ? 'cursor-pointer' : 'cursor-not-allowed text-gray-400'}
+        onClick={currentPage !== totalCount ? () => {
           handleClick('next');
-        }}
+        } : undefined}
       >
         Next
       </button>

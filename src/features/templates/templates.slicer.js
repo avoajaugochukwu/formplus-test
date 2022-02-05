@@ -2,11 +2,16 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createSlice } from '@reduxjs/toolkit';
 import API_URL from '../../contants/api';
+import { CATEGROYTYPES, DATETYPES, ORDERTYPES } from '../../contants/templates';
 
 export const initialState = {
   loading: false,
   hasErrors: false,
   templates: [],
+  searchTerm: '',
+  category: CATEGROYTYPES.ALL,
+  date: DATETYPES.DEFAULT,
+  order: ORDERTYPES.DEFAULT,
 };
 
 // A slice for templates with our three reducers
