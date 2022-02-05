@@ -2,16 +2,16 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createSlice } from '@reduxjs/toolkit';
 import API_URL from '../../contants/api';
-import { CATEGROYTYPES, DATETYPES, ORDERTYPES } from '../../contants/templates';
+import { CATEGROYTYPES, SORTTYPES } from '../../contants/templates';
 
 export const initialState = {
   loading: false,
   hasErrors: false,
-  templates: [],
   searchTerm: '',
   category: CATEGROYTYPES.ALL,
-  date: DATETYPES.DEFAULT,
-  order: ORDERTYPES.DEFAULT,
+  date: SORTTYPES.DEFAULT,
+  order: SORTTYPES.DEFAULT,
+  templates: [],
 };
 
 // A slice for templates with our three reducers
@@ -37,12 +37,19 @@ const templatesSlice = createSlice({
     setCategoryState: (state, { payload }) => {
       state.category = payload;
     },
+    setDateState: (state, { payload }) => {
+      state.date = payload;
+    },
+    setOrderState: (state, { payload }) => {
+      state.order = payload;
+    },
   },
 });
 
 // Three actions generated from the slice
 export const {
-  getTemplates, getTemplatesSuccess, getTemplatesFailure, setSearchTermState,
+  getTemplates, getTemplatesSuccess, getTemplatesFailure, setSearchTermState, setCategoryState,
+  setDateState, setOrderState,
 } = templatesSlice.actions;
 
 // A selector
