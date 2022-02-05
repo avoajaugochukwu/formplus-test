@@ -27,25 +27,35 @@ const TemplateHeader = () => {
     }
   }, [debouncedText]);
 
+  const resetOrder = () => {
+    dispatch(setOrderState(SORTTYPES.DEFAULT));
+    setOrder(SORTTYPES.DEFAULT);
+  };
+
+  const resetDate = () => {
+    dispatch(setDateState(SORTTYPES.DEFAULT));
+    setDate(SORTTYPES.DEFAULT);
+  };
+
   useEffect(() => {
     dispatch(setCategoryState(category));
     dispatch(setSearchTermState(''));
     setSearchTerm('');
+    resetDate();
+    resetOrder();
   }, [category]);
 
   useEffect(() => {
     dispatch(setDateState(date));
     if (date !== SORTTYPES.DEFAULT) {
-      dispatch(setOrderState(SORTTYPES.DEFAULT));
-      setOrder(SORTTYPES.DEFAULT);
+      resetOrder();
     }
   }, [date]);
 
   useEffect(() => {
     dispatch(setOrderState(order));
     if (order !== SORTTYPES.DEFAULT) {
-      dispatch(setDateState(SORTTYPES.DEFAULT));
-      setDate(SORTTYPES.DEFAULT);
+      resetDate();
     }
   }, [order]);
 

@@ -5,6 +5,10 @@ import Pagination from '../../components/Pagination';
 import { fetchTemplates } from './templates.slicer';
 
 import { TEMPLATESPERPAGE, CATEGROYTYPES, SORTTYPES } from '../../contants/templates';
+import {
+  sortByDate, sortByString, filterByCategory, searchTemplates,
+} from '../../utils';
+
 import TemplateCard from './TemplateCard';
 import TemplatesSkeleton from './TemplatesSkeleton';
 import TemplateHeader from './TemplateHeader';
@@ -37,52 +41,6 @@ const Templates = () => {
     return array.slice(start, end);
   };
 
-  const searchTemplates = (array, searchValue) => {
-    let searchResult = [];
-    if (searchValue !== '' || searchValue !== ' ') {
-      searchResult = array.filter(
-        (item) => item.name.includes(searchValue)
-          || item.description.includes(searchValue),
-      );
-
-      return searchResult;
-    }
-
-    return array;
-  };
-
-  const filterByCategory = (array, categoryType) => {
-    let filterResult = [];
-    if (categoryType !== CATEGROYTYPES.ALL) {
-      filterResult = array.filter((item) => item.category.includes(categoryType));
-      return filterResult;
-    }
-    return array;
-  };
-
-  // eslint-disable-next-line no-unused-vars
-  const sortByString = (array, sortField, sortType) => {
-    let filterResult;
-    if (sortType === SORTTYPES.ASCENDING) {
-      filterResult = array.sort((a, b) => (a[sortField] > b[sortField] ? 1 : -1));
-    }
-    if (sortType === SORTTYPES.DESCENDING) {
-      filterResult = array.sort((a, b) => (a[sortField] > b[sortField] ? -1 : 1));
-    }
-    return filterResult;
-  };
-
-  const sortByDate = (array, sortType) => {
-    let filterResult;
-    if (sortType === SORTTYPES.ASCENDING) {
-      filterResult = array.sort((a, b) => (Date.parse(a.created) > Date.parse(b.created) ? 1 : -1));
-    }
-    if (sortType === SORTTYPES.DESCENDING) {
-      filterResult = array.sort((a, b) => (Date.parse(a.created) > Date.parse(b.created) ? -1 : 1));
-    }
-    return filterResult;
-  };
-
   useEffect(() => {
     async function fetchData() {
       if (templates) {
@@ -90,20 +48,17 @@ const Templates = () => {
         filteredResult = await searchTemplates(templates, searchTerm);
 
         if (category !== CATEGROYTYPES.ALL) {
-          const searchResult = filteredResult;
+          const searchResult = [...filteredResult];
           filteredResult = await filterByCategory(searchResult, category);
         }
-        // use spread for copying arrays all over here
         if (date !== SORTTYPES.DEFAULT) {
-          const arrayForSorting = filteredResult;
+          const arrayForSorting = [...filteredResult];
           filteredResult = await sortByDate(arrayForSorting, date);
-          // console.log(filteredResult);
         }
 
         if (order !== SORTTYPES.DEFAULT) {
-          const arrayForSorting = filteredResult;
+          const arrayForSorting = [...filteredResult];
           filteredResult = await sortByString(arrayForSorting, 'name', order);
-          console.log(filteredResult);
         }
 
         const displayTemplates = await getTemplatesForDisplay(
@@ -134,6 +89,18 @@ const Templates = () => {
         <>
           {/* <TemplateHeader /> */}
           <TemplateAlert />
+          <div className="flex justify-between">
+            <p className="capitalize">
+              {category}
+              {' '}
+              Templates
+            </p>
+            <p>
+              {treatedTemplates?.length}
+              {' '}
+              templates
+            </p>
+          </div>
           <div className="sm:grid sm:grid-cols-2 sm:gap-5 md:grid md:grid-cols-3 md:gap-5">
             {currentPageTemplates.map((template) => (
               <TemplateCard key={template.name} template={template} />
