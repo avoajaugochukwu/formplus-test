@@ -31,11 +31,19 @@ const templatesSlice = createSlice({
       state.loading = false;
       state.hasErrors = true;
     },
+    setSearchTermState: (state, { payload }) => {
+      state.searchTerm = payload;
+    },
+    setCategoryState: (state, { payload }) => {
+      state.category = payload;
+    },
   },
 });
 
 // Three actions generated from the slice
-export const { getTemplates, getTemplatesSuccess, getTemplatesFailure } = templatesSlice.actions;
+export const {
+  getTemplates, getTemplatesSuccess, getTemplatesFailure, setSearchTermState,
+} = templatesSlice.actions;
 
 // A selector
 export const templatesSelector = (state) => state.templates;

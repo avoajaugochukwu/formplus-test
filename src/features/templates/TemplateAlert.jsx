@@ -9,7 +9,7 @@ const TemplateAlert = () => (
     <div className="text-sm text-gray-600">
       <p>
         Tada! Get started with a free template.
-        Can&apos;t find hat you are looking for? Search from the 1000+
+        Can&apos;t find what you are looking for? Search from the 1000+
         available templates
       </p>
     </div>

@@ -16,7 +16,7 @@ const Templates = () => {
     loading,
     hasErrors = false,
     searchTerm,
-    // category,
+    category,
     // order,
     // date
   } = useSelector((state) => state.templates);
@@ -27,7 +27,8 @@ const Templates = () => {
   }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [templatesToDisplay, setTemplatesToDisplay] = useState([]);
+  const [currentPageTemplates, setCurrentPageTemplates] = useState([]);
+  const [treatedTemplates, setTreatedTemplates] = useState([]);
 
   const getTemplatesForDisplay = (array, pageNumber, itemsPerPage) => {
     const start = (pageNumber - 1) * itemsPerPage;
@@ -36,16 +37,45 @@ const Templates = () => {
     return array.slice(start, end);
   };
 
-  useEffect(() => {
-    if (templates) {
-      const displayTemplates = getTemplatesForDisplay(
-        templates,
-        currentPage,
-        TEMPLATESPERPAGE,
+  const searchTemplates = (array, searchValue) => {
+    let searchResult = [];
+    if (searchValue !== '' || searchValue !== ' ') {
+      searchResult = array.filter(
+        (item) => item.name.includes(searchValue)
+          || item.description.includes(searchValue),
       );
-      setTemplatesToDisplay(displayTemplates);
+
+      return searchResult;
     }
-  }, [currentPage, templates]);
+
+    return array;
+  };
+
+  // const filterByCategory = async (array, category) => {
+  //   let filterResult = [];
+  //   if (category !== CATEGROYTYPES.ALL) {
+  //     filterResult = array.filter((item) => item.category.includes(category));
+  //     return filterResult;
+  //   }
+  //   return array;
+  // };
+
+  useEffect(() => {
+    async function fetchData() {
+      if (templates) {
+        const searchResult = await searchTemplates(templates, searchTerm);
+        setTreatedTemplates(searchResult);
+
+        const displayTemplates = await getTemplatesForDisplay(
+          searchResult,
+          currentPage,
+          TEMPLATESPERPAGE,
+        );
+        setCurrentPageTemplates(displayTemplates);
+      }
+    }
+    fetchData();
+  }, [currentPage, templates, searchTerm, category]);
 
   const fetchPage = () => {
     setCurrentPage();
@@ -58,20 +88,17 @@ const Templates = () => {
 
       {hasErrors && <p>There are errors</p>}
 
-      {!loading && templatesToDisplay && (
+      {!loading && currentPageTemplates && (
         <>
           {/* <TemplateHeader /> */}
           <TemplateAlert />
           <div className="sm:grid sm:grid-cols-2 sm:gap-5 md:grid md:grid-cols-3 md:gap-5">
-            {templatesToDisplay.map((template) => (
-              <TemplateCard
-                key={template.name}
-                template={template}
-              />
+            {currentPageTemplates.map((template) => (
+              <TemplateCard key={template.name} template={template} />
             ))}
           </div>
           <Pagination
-            totalCount={templates?.length}
+            totalCount={treatedTemplates?.length}
             displayPerPage={TEMPLATESPERPAGE}
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}

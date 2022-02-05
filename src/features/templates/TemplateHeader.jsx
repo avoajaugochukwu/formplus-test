@@ -1,34 +1,26 @@
-import React, { useState } from 'react';
-import searchIcon from '../../assets/svg/search-svgrepo-com.svg';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useDebounce } from 'use-debounce';
+import SearchBar from '../../components/SearchInput';
+
+import { setSearchTermState } from './templates.slicer';
+
 // import { CATEGROYTYPES, DATETYPES, ORDERTYPES } from '../../contants/templates';
 
 const TemplateHeader = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedText] = useDebounce(searchTerm, 100);
+  const dispatch = useDispatch();
 
-  const handleSearchClick = (searchValue) => {
-    // run dispatch for updating state
-    console.log(searchValue);
-  };
+  useEffect(() => {
+    if (debouncedText) {
+      dispatch(setSearchTermState(debouncedText));
+    }
+  }, [debouncedText]);
 
-  console.log('Money');
   return (
     <div className="flex justify-between my-20">
-      <div className="border flex rounded-sm">
-        <input
-          type="text"
-          placeholder="Search Templates"
-          value={searchTerm}
-          onChange={({ target: { value } }) => setSearchTerm(value)}
-          className="outline-none pl-4 placeholder:text-xs"
-        />
-        <button
-          type="button"
-          className="w-full px-2"
-          onClick={() => handleSearchClick(searchTerm)}
-        >
-          <img src={searchIcon} alt="Search" className="w-7 p-1" />
-        </button>
-      </div>
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       {/* **************************** */}
       <div className="flex gap-x-4">
         <div>
