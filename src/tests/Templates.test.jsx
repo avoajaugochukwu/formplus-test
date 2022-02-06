@@ -29,10 +29,12 @@ describe('Test sortByFunction', () => {
 
 const render = (component) => rtlRender(<Provider store={store}>{component}</Provider>);
 
-it('Test if the title of the page is correct', async () => {
-  await act(async () => {
-    await render(<Templates />);
-  });
+describe('Test rendering', () => {
+  it("Test if page contains 'sortby' which renders after fetch is complete", async () => {
+    await act(async () => {
+      await render(<Templates />);
+    });
 
-  waitFor(() => expect(screen.queryByTestId('sort-by')).toHaveTextContent('Sort by'));
+    waitFor(() => expect(screen.queryByTestId('sort-by')).toHaveTextContent('Sort by'));
+  });
 });
