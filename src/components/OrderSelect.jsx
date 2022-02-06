@@ -4,10 +4,10 @@ import { SORTTYPES } from '../contants/templates';
 
 const OrderSelect = ({ order, setOrder }) => (
   <div>
-    <fieldset className="border rounded-sm">
+    <fieldset className="my-4 md:my-0 border rounded-sm">
       <legend className="ml-2 text-gray-500 font-light text-xs">Order</legend>
       <select
-        className="outline-none w-40 text-sm pl-3 pb-2"
+        className="outline-none w-full md:w-40 text-sm pl-3 pb-2"
         onChange={({ target: { value } }) => setOrder(value)}
       >
         <option value={SORTTYPES.DEFAULT} defaultValue={order}>

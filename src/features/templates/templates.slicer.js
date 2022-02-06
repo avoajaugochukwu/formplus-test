@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { createSlice } from '@reduxjs/toolkit';
 import API_URL from '../../contants/api';
 import { CATEGROYTYPES, SORTTYPES } from '../../contants/templates';

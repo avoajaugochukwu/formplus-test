@@ -60,12 +60,12 @@ const TemplateHeader = () => {
   }, [order]);
 
   return (
-    <div className="flex justify-between my-20">
+    <div className="md:flex md:justify-between my-20">
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       {/* **************************** */}
-      <div className="flex gap-x-4">
+      <div className="md:flex gap-x-4">
         <div>
-          <p className="mt-3 text-gray-500 text-sm">Sort by:</p>
+          <p className="mt-3 text-gray-500 text-sm" id="sort-by">Sort by:</p>
         </div>
         <CategorySelect category={category} setCategory={setCategory} />
 

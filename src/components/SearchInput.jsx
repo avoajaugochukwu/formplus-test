@@ -4,20 +4,20 @@ import PropTypes from 'prop-types';
 import searchIcon from '../assets/svg/search-svgrepo-com.svg';
 
 const SearchBar = ({ searchTerm, setSearchTerm }) => (
-  <div className="border flex rounded-sm">
+  <div className="my-4 md:my-0 border flex rounded-sm h-10">
     <input
       type="text"
       placeholder="Search Templates"
       value={searchTerm}
       onChange={({ target: { value } }) => setSearchTerm(value)}
-      className="outline-none pl-4 placeholder:text-xs"
+      className="outline-none pl-4 placeholder:text-xs w-full"
     />
-    <button
+    <div
       type="button"
-      className="w-full px-2"
+      className="w-2/12 px-2 cursor-pointer"
     >
-      <img src={searchIcon} alt="Search" className="w-7 p-1" />
-    </button>
+      <img src={searchIcon} alt="Search" className="h-6 w-10 mt-2" />
+    </div>
   </div>
 );
 

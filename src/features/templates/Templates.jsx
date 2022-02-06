@@ -87,7 +87,6 @@ const Templates = () => {
 
       {!loading && currentPageTemplates && (
         <>
-          {/* <TemplateHeader /> */}
           <TemplateAlert />
           <div className="flex justify-between">
             <p className="capitalize">
