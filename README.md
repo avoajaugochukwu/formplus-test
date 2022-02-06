@@ -22,3 +22,8 @@
 - I demonstrated a test of business logic by testing one of the functions.
 - I also did a screen search test for a static data on the app.
 - In a real-world scenario, more testing of data fetching will be incorporated.
+
+## Tools used
+- VSCode
+- Chrome
+- Postman
