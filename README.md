@@ -16,3 +16,7 @@
 - The sorting by date is not obvious because dates were not rendered.
 - In a real-world scenerio, the `utils` functions should all be tested, because they contain crucial business logic, and they have been designed to be easily testable.
 - The select fields can be further abstracted to use only one reusable component. Since that wasn't done, I made them almost stateless thereby increasing their reusability and clarity.
+
+## Testing
+- I demonstrated a test of business logic.
+- I prefer end to end tests with cypress or selenium or more recently playwrite
