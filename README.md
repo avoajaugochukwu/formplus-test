@@ -1,5 +1,7 @@
 # Formpl.us Front End Test 
 
+![Screenshot](https://raw.githubusercontent.com/avoajaugochukwu/formplus-test/master/.github/Screenshot.png)
+
 ## Assumptions 
 - Sorting was performed on the `name` field.
 - Filtering by `category` was performed on the `name` or `description` fields, anyone that returned a match.
