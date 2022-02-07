@@ -13,6 +13,7 @@ import TemplateCard from './TemplateCard';
 import TemplatesSkeleton from './TemplatesSkeleton';
 import TemplateHeader from './TemplateHeader';
 import TemplateAlert from './TemplateAlert';
+import ErrorPage from '../../components/ErrorPage';
 
 const Templates = () => {
   const {
@@ -82,9 +83,9 @@ const Templates = () => {
     <div>
       {loading && <TemplatesSkeleton />}
 
-      {hasErrors && <p>There are errors</p>}
+      {hasErrors && <ErrorPage />}
 
-      {!loading && currentPageTemplates && (
+      {!loading && !hasErrors && currentPageTemplates && (
         <>
           <TemplateHeader />
           <TemplateAlert />

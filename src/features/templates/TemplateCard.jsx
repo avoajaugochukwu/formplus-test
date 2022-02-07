@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './templates.module.css';
 
 const TemplateCard = ({ template }) => (
-  <div className={` ${styles.customBorderShadow} mt-5 custom-border-shadow`}>
+  <div className={` ${styles.customBorderShadow} mt-5 pt-4 custom-border-shadow`}>
     <div className="h-40 px-4">
       <h3 className="font-bold text-2xl mb-3 capitalize">{template.name}</h3>
       <p className="font-light text-gray-800">{template.description}</p>
