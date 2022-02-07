@@ -80,13 +80,13 @@ const Templates = () => {
 
   return (
     <div>
-      <TemplateHeader />
       {loading && <TemplatesSkeleton />}
 
       {hasErrors && <p>There are errors</p>}
 
       {!loading && currentPageTemplates && (
         <>
+          <TemplateHeader />
           <TemplateAlert />
           <div className="flex justify-between">
             <p className="capitalize">
