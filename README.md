@@ -15,7 +15,7 @@
 - This is my first time of working with `@redux/toolkit`, and I find it very accessible.
 - Some times the app throws a No 'Access-Control-Allow_Origin' header error. All you have to do is refresh the browser.
 - The sorting by date is not obvious because dates were not rendered.
-- In a real-world scenerio, the `utils` functions should all be tested, because they contain crucial business logic, and they have been designed to be easily testable.
+- In a real-world scenerio, the `utils` functions should all be tested, because they contain crucial business logic, and I haved designed them to be easily testable.
 - The select fields can be further abstracted to use only one reusable component. Since that wasn't done, I made them almost stateless thereby increasing their reusability and clarity.
 
 ## Testing
@@ -27,3 +27,5 @@
 - VSCode
 - Chrome
 - Postman
+
+#### Any other thing not covered is due to time limitation on my side.
